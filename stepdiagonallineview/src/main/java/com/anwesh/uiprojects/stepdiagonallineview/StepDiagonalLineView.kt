@@ -27,8 +27,8 @@ fun Float.sinify() : Float = Math.sin(this * Math.PI).toFloat()
 
 fun Canvas.drawDiagonalLine(i : Int, w : Float, scale : Float, paint : Paint) {
     val sf : Float = scale.sinify().divideScale(i, lines)
-    val sj : Float = 1f - 2 * i
     val si : Int = i % 2
+    val sj : Float = 1f - 2 * si
     val gap : Float = w / lines
     save()
     translate(i * gap, -gap + gap * si)
@@ -206,7 +206,7 @@ class StepDiagonalLineView(ctx : Context) : View(ctx) {
         }
 
         fun handleTap() {
-            sdl.update {
+            sdl.startUpdating {
                 animator.start()
             }
         }
