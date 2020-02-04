@@ -187,4 +187,26 @@ class StepDiagonalLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : StepDiagonalLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val sdl : StepDiagonalLine = StepDiagonalLine(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            sdl.draw(canvas, paint)
+            animator.animate {
+                sdl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sdl.update {
+                animator.start()
+            }
+        }
+    }
 }
