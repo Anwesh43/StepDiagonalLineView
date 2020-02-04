@@ -209,4 +209,13 @@ class StepDiagonalLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : StepDiagonalLineView {
+            val view : StepDiagonalLineView = StepDiagonalLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
